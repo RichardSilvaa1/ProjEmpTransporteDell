@@ -6,11 +6,10 @@ public class Conexao {
     private double[][] distancias;
     private Transporte transporte;
 
-    public Conexao(Cidade origem, Cidade destino, double[][] distancias, Transporte transporte) {
+    public Conexao(Cidade origem, Cidade destino) {
         this.origem = origem;
         this.destino = destino;
-        this.distancias = distancias;
-        this.transporte = transporte;
+        this.distancias = new double[1][1]; // Matriz de 1x1 inicialmente, será definida posteriormente
     }
 
     public Cidade getOrigem() {

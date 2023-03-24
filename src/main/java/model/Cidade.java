@@ -8,8 +8,7 @@ public class Cidade {
     private String nome;
     private Map<Cidade, Double> conexoes;
 
-    public Cidade(int id, String nome) {
-        this.id = id;
+    public Cidade(String nome) {
         this.nome = nome;
         this.conexoes = new HashMap<>();
     }
