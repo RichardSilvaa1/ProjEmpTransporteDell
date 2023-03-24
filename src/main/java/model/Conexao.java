@@ -3,13 +3,13 @@ package model;
 public class Conexao {
     private Cidade origem;
     private Cidade destino;
-    private double distancia;
+    private double[][] distancias;
     private Transporte transporte;
 
-    public Conexao(Cidade origem, Cidade destino, double distancia, Transporte transporte) {
+    public Conexao(Cidade origem, Cidade destino, double[][] distancias, Transporte transporte) {
         this.origem = origem;
         this.destino = destino;
-        this.distancia = distancia;
+        this.distancias = distancias;
         this.transporte = transporte;
     }
 
@@ -29,12 +29,12 @@ public class Conexao {
         this.destino = destino;
     }
 
-    public double getDistancia() {
-        return distancia;
+    public double[][] getDistancias() {
+        return distancias;
     }
 
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
+    public void setDistancias(double[][] distancias) {
+        this.distancias = distancias;
     }
 
     public Transporte getTransporte() {
@@ -45,4 +45,3 @@ public class Conexao {
         this.transporte = transporte;
     }
 }
-

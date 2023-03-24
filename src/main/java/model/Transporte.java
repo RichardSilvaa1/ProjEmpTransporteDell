@@ -1,7 +1,6 @@
 package model;
 
 import java.util.List;
-
 public class Transporte {
     private Conexao conexao;
     private Caminhao caminhao;
@@ -15,8 +14,8 @@ public class Transporte {
 
         // Extrai a distância da conexão correspondente
         double[][] distancias = conexao.getDistancias();
-        int origem = conexao.getOrigem();
-        int destino = conexao.getDestino();
+        int origem = conexao.getOrigem().getId();
+        int destino = conexao.getDestino().getId();
         double distancia = distancias[origem][destino];
 
         // Calcula o custo total
@@ -34,4 +33,4 @@ public class Transporte {
     public double getCusto() {
         return custo;
     }
-
+}

@@ -4,12 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cidade {
+    private int id;
     private String nome;
     private Map<Cidade, Double> conexoes;
 
-    public Cidade(String nome) {
+    public Cidade(int id, String nome) {
+        this.id = id;
         this.nome = nome;
         this.conexoes = new HashMap<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
