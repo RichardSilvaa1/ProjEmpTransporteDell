@@ -3,70 +3,35 @@ package model;
 import java.util.List;
 
 public class Transporte {
+    private Conexao conexao;
     private Caminhao caminhao;
-    private Cidade origem;
-    private Cidade destino;
     private List<Item> carga;
-    private double distancia;
+    private double custo;
 
-    public Transporte(Caminhao caminhao, Cidade origem, Cidade destino, List<Item> carga, double distancia) {
+    public Transporte(Conexao conexao, Caminhao caminhao, List<Item> carga) {
+        this.conexao = conexao;
         this.caminhao = caminhao;
-        this.origem = origem;
-        this.destino = destino;
         this.carga = carga;
-        this.distancia = distancia;
-    }
 
-    public Caminhao getCaminhao() {
-        return caminhao;
-    }
+        // Extrai a distância da conexão correspondente
+        double[][] distancias = conexao.getDistancias();
+        int origem = conexao.getOrigem();
+        int destino = conexao.getDestino();
+        double distancia = distancias[origem][destino];
 
-    public void setCaminhao(Caminhao caminhao) {
-        this.caminhao = caminhao;
-    }
-
-    public Cidade getOrigem() {
-        return origem;
-    }
-
-    public void setOrigem(Cidade origem) {
-        this.origem = origem;
-    }
-
-    public Cidade getDestino() {
-        return destino;
-    }
-
-    public void setDestino(Cidade destino) {
-        this.destino = destino;
-    }
-
-    public List<Item> getCarga() {
-        return carga;
-    }
-
-    public void setCarga(List<Item> carga) {
-        this.carga = carga;
-    }
-
-    public double getDistancia() {
-        return distancia;
-    }
-
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
-    }
-
-    public double getCusto() {
+        // Calcula o custo total
         double pesoTotal = 0.0;
         for (Item item : carga) {
             pesoTotal += item.getPeso();
         }
         if (pesoTotal > caminhao.getPesoMaximo()) {
-            throw new IllegalArgumentException("Peso da carga excede o limite do caminhão.");
+            this.custo = Double.POSITIVE_INFINITY; // retorna infinito se o peso total excede o limite do caminhão
+        } else {
+            this.custo = caminhao.getCustoKm() * distancia;
         }
-        double custoTotal = caminhao.getCustoKm() * distancia;
-        return custoTotal;
     }
-}
+
+    public double getCusto() {
+        return custo;
+    }
 

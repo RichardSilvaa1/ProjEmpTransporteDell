@@ -23,4 +23,4 @@ public class Cidade {
     public Double getDistanciaPara(Cidade cidade) {
         return conexoes.get(cidade);
     }
-}}
+}
